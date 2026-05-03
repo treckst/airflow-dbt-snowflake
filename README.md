@@ -52,4 +52,4 @@ Building this pipeline involved a lot of learning. Here are the main resources I
 https://youtu.be/vMgFadPxOLk?si=nTcNLE7BW8VO6pfr, https://youtu.be/B8uwFmVt4sU?si=baCpVYRbb9BsDqi, https://youtu.be/9PxRPulvLCg?si=OK4aTys6sRCvF1dT,
 https://youtu.be/3SZSDKEZqoA?si=y_O5EWS6Vhj_SFr1
 
-* Cosmos: https://youtu.be/DzxtCxi4YaA?si=ufwffeyWnZFMZrbB, https://youtu.be/iHqtFkm_3i4?si=UallGq-YUiJMExFA, https://youtu.be/zVo8Mv_i2Z8?si=HmBgZsmvoksEBcIo
+* Cosmos: https://youtu.be/2BoAAvbe98c?si=rU0Q128L5_8c1i-3, https://youtu.be/DzxtCxi4YaA?si=ufwffeyWnZFMZrbB, https://youtu.be/iHqtFkm_3i4?si=UallGq-YUiJMExFA, https://youtu.be/zVo8Mv_i2Z8?si=HmBgZsmvoksEBcIo
