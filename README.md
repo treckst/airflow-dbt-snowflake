@@ -38,7 +38,8 @@ This provides detailed tracking directly within the Airflow. If a specific data 
 # Tech Stack
 ## Orchestration: Apache Airflow 3.2 (using the new TaskFlow API & Object Storage features)
 ## Data Lake: Amazon S3
-## Data Warehouse: Snowflake
+## Data Warehouse: Snowflake<img width="297" height="613" alt="image" src="https://github.com/user-attachments/assets/1a13f5b1-867e-44a9-a742-68150c7c22ca" />
+
 ## Transformations: Python (Pandas) & SQL (dbt)
 ## dbt-Airflow Integration: Astronomer Cosmos
 ## Visualization: Power BI
