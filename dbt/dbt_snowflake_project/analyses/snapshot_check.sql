@@ -1,0 +1,1 @@
+SELECT * FROM {{ ref('golden_items')}}

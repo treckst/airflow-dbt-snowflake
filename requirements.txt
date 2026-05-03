@@ -1,0 +1,8 @@
+astronomer-cosmos
+apache-airflow-providers-amazon[s3fs]
+pandas
+python-dotenv
+pendulum
+requests
+pyarrow
+apache-airflow-providers-snowflake

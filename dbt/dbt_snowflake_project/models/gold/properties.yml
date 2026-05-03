@@ -1,0 +1,37 @@
+models:
+  - name: fact_table
+    config:
+      materialized: incremental
+      unique_key: id
+    columns:
+    - name: id
+      data_tests:
+        - unique
+        - not_null
+  - name: dim_time
+    config:
+      materialized: incremental
+      unique_key: id
+    columns:
+    - name: date
+      data_tests:
+        - unique
+        - not_null
+    - name: quarter
+      data_tests:
+        - generic_non_negative
+  - name: dim_stock_final
+    columns:
+    - name: symbol
+      data_tests:
+        - not_null
+        - accepted_values:
+            arguments:
+              values: ['AMZN','APPL','MSFT','TSLA','NVDA','META','GOOGL']
+    - name: name
+      data_tests:
+        - not_null
+        - accepted_values:
+            arguments:
+              values: ['AMAZON','APPLE','MICROSOFT','TESLA','NVIDIA','META','GOOGLE']
+      
