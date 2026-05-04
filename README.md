@@ -6,6 +6,18 @@
 ## Everything is orchestrated with Apache Airflow using Cosmos by Astronomer for seamless dbt integration which makes each dbt model with test as a separate task instead of hardcoding "dbt run".
 
 
+## Project Goal & Business Use Case
+#### The primary goal of this project is to provide a fully automated, scalable, and reliable data pipeline that delivers clean stock market data for financial analysis.
+
+#### By automating the ingestion, transformation, and modeling of this data, the pipeline eliminates the need for manual data pulls and ensures that decision-makers always have access to the source of truth.
+
+## Business Value Delivered:
+
+#### Target Audience: Financial analysts and portfolio managers who need up-to-date, historical stock market data to make informed investment decisions.
+
+#### Problem Solved: Transforms unstructured, raw API payloads into a highly optimized dimensional Star Schema, reducing query times and making the data instantly ready for Business Intelligence (BI) tools.
+
+
 ##  Architecture & Data Flow
 
 ### Extract:
