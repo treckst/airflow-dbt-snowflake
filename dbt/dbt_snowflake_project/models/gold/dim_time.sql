@@ -9,7 +9,7 @@ FROM
 {% if is_incremental() %}
 WHERE
     trade_date > (
-        SELECT MAX(date)
+        SELECT COALESCE(MAX(date), '1900-01-01'::DATE)
         FROM {{ this }}
     )
 {% endif %}

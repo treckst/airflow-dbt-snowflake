@@ -18,10 +18,10 @@ s3_options = {
     "secret": os.getenv("AWS_SECRET_ACCESS_KEY")
 }
 
-def silver_transform(data, file_date):
+def to_parquet(data, file_date):
     #remove then index_col when reading from api
     try:
-        log.info(f"Executing silver transformation...")
+        log.info(f"Executing parquet transformation...")
 
         must_have=[
             'symbol', 'open', 'close', 'low',
@@ -41,11 +41,11 @@ def silver_transform(data, file_date):
             engine = 'pyarrow',
             index = False,
         )
-        log.info(f"Silver transformation successfully completed!.")
+        log.info(f"Parquet transformation successfully completed!.")
         truth_path = ObjectStoragePath(truth)
 
         return truth_path
 
     except Exception as e:
-        log.error(f"Error occurred during silver transformation: {e}")
+        log.error(f"Error occurred during parquet transformation: {e}")
         raise

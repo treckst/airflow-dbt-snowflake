@@ -13,7 +13,7 @@ FROM
 {% if is_incremental() %}
 WHERE
     trade_date > (
-        SELECT MAX(dim.date)
+        SELECT COALESCE(MAX(dim.date), '1900-01-01'::DATE)
     FROM {{ this }} as fact
     INNER JOIN {{ ref('dim_time') }} as dim
     ON fact.time_id = dim.id

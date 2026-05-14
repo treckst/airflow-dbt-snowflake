@@ -11,32 +11,8 @@ import os
 
 from src.api import extract_api, load_to_s3
 from src.aws import upload_from_s3
-from src.transform import silver_transform
+from src.transform import to_parquet
 
-
-DBT_PROJECT_PATH = Path("/opt/airflow/dbt/dbt_snowflake_project")
-
-
-_project_config = ProjectConfig(
-    dbt_project_path = DBT_PROJECT_PATH,
-    install_dbt_deps=True
-)
-
-_profile_config = ProfileConfig(
-    profile_name="default",
-    target_name="dev",
-    profile_mapping=SnowflakeUserPasswordProfileMapping(
-        conn_id='stocks_snowflake',
-        profile_args={
-            "database": "STOCKS",
-            "schema": "SOURCE",
-        },
-    ),
-)
-
-_execution_config = ExecutionConfig(
-        dbt_executable_path="/opt/airflow/dbt_venv/bin/dbt", 
-    )
 
 load_dotenv(find_dotenv(), override=True)
 BUCKET = os.getenv("BUCKET_BASE_PATH")
@@ -66,7 +42,7 @@ def stocks_elt():
     def as_parquet(path: ObjectStoragePath):
         file_date = path.name.replace('.json', '')
         bronze = upload_from_s3(path)
-        silver_path = silver_transform(bronze, file_date)
+        silver_path = to_parquet(bronze, file_date)
         return silver_path
 
     load_to_snowflake = CopyFromExternalStageToSnowflakeOperator(
@@ -81,6 +57,31 @@ def stocks_elt():
 
     first = extract_to_s3()
     second = as_parquet(first)
+
+    # setting up dbt
+    DBT_PROJECT_PATH = "/opt/airflow/dbt/dbt_snowflake_project"
+
+
+    _project_config = ProjectConfig(
+        dbt_project_path = DBT_PROJECT_PATH,
+        install_dbt_deps=True
+    )
+
+    _profile_config = ProfileConfig(
+        profile_name="default",
+        target_name="dev",
+        profile_mapping=SnowflakeUserPasswordProfileMapping(
+            conn_id='stocks_snowflake',
+            profile_args={
+                "database": "STOCKS",
+                "schema": "SOURCE",
+            },
+        ),
+    )
+
+    _execution_config = ExecutionConfig(
+            dbt_executable_path="/opt/airflow/dbt_venv/bin/dbt", 
+        )
 
     cosmos_dag = DbtTaskGroup(
         group_id="dbt_transform",
